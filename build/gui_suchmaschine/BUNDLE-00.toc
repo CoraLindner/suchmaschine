@@ -1,0 +1,3 @@
+([('gui_suchmaschine',
+   '/Users/MC700/Desktop/Code_Suchmaschine/dist/gui_suchmaschine',
+   'EXECUTABLE')],)
