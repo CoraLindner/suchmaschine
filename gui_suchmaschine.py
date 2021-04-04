@@ -1,8 +1,16 @@
 """Creates a simple Tkinter GUI"""
+import sys
 import glob
 import tkinter as tk
 from tkinter import ttk
 import pandas as pd
+from pathlib import Path
+
+# Fix the Mac OS Path
+if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+    excelfiles = Path(sys._MEIPASS)
+else:
+    excelfiles = Path(__file__).parent
 
 # Function to look for consecutive ocurrences of strings in the excels and insert them into text
 
@@ -28,7 +36,7 @@ def search_excels(codes):
     texts = tk.Text(root, height=500, width=700)
     my_excels = []
     my_excels_names = []
-    for fil in glob.glob("./*.xlsx"):
+    for fil in glob.glob(str(excelfiles) + "/*.xlsx"):
         my_excels.append(pd.read_excel(fil, header=2, usecols=(0, 1, 2, 3, 4)))
         my_excels_names.append(fil)
     for idx, lst in enumerate(my_excels):  # Loop through all files
