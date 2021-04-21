@@ -1,5 +1,6 @@
 """Creates a simple Tkinter GUI"""
 import sys
+import os
 import glob
 import tkinter as tk
 from tkinter import ttk
@@ -75,11 +76,16 @@ def spin_function(numcodes):
 
     button.pack()
 
-
 # Main loop
 
 root = tk.Tk()
 root.title("Code Suchmaschine")
+
+# Function to Refresh
+
+def refresh():
+    root.destroy()
+    os.execl(sys.executable, sys.executable, *sys.argv)
 
 # Task for user to select number of codes
 
@@ -99,5 +105,11 @@ spin_numcodes.pack()
 button_spin_numcodes = tk.Button(
     root, text="Submit", command=lambda: spin_function(spin_numcodes.get()))
 button_spin_numcodes.pack()
+
+# Button to refresh
+
+button_refresh = tk.Button(
+    root, text="Refresh", command=lambda: refresh())
+button_refresh.pack() 
 
 root.mainloop()
